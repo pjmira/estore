@@ -1,4 +1,5 @@
-import Prdoucts from '../Porducts';
+
+import Products from '../Products';
 import SideNav from '../SideNav';
 import './_main-component.scss';
 
@@ -12,7 +13,7 @@ const MainComponent = ()=>{
               <SideNav/>
           </div>
           <div className='col-lg-10 col-md-9 col-sm-8'>
-            <Prdoucts/>
+            <Products/>
           </div>
         </div>
       </div>
