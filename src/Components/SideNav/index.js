@@ -3,7 +3,7 @@ import './_side-nav.scss';
 import accordionSlice from '../../Redux/Accordion/accordionCatSlice/accordionCatSlice';
 import { useEffect, useState } from 'react';
 import { getCategories } from '../../Redux/Category/actions.js';
-import { filterProducts } from '../../Redux/Product/productSlice';
+import { filterByPrice, filterProducts } from '../../Redux/Product/productSlice';
 
 const SideNav = ()=>{
 
@@ -25,6 +25,19 @@ const SideNav = ()=>{
   const filterData = (selectedCategory)=>{
     const payload = {selectedCategory,products};
     dispatch(filterProducts(payload));
+  }
+
+  const setPriceLimit = (e,stateFlag)=>{
+    if(stateFlag==="max"){
+      setMaxPriceLimit(e.target.value);
+    }else if(stateFlag==="min"){
+      setMinPriceLimit(e.target.value);
+    }
+  }
+
+  const applyPriceFilter = ()=>{
+    const payload = {products,minPriceLimit,maxPriceLimit};
+    dispatch(filterByPrice(payload));
   }
 
   return(
@@ -87,6 +100,7 @@ const SideNav = ()=>{
             min={10}
             max={130}
             step={10}
+            onChange={(e)=>setPriceLimit(e,"min")}
           />
         </div>
         <div>
@@ -97,12 +111,16 @@ const SideNav = ()=>{
             min={10}
             max={130}
             step={10}
+            onChange={(e)=>setPriceLimit(e,"max")}
           />
         </div>
-        <button className='btn btn-outline-dark my-3 py-0 form-range' > Apply Filter </button>
+        <button 
+          className='btn btn-outline-dark my-3 py-0 form-range'
+          onClick={applyPriceFilter}
+          > Apply Filter </button>
      </div>
     </div>
   )
 }
 
-export default SideNav;
+export default SideNav; 
