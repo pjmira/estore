@@ -53,14 +53,17 @@ const TopNav =() =>{
               <li className='list-icon'> <i className='fa fa-heart'/> </li>
               <Link to="/cart">
                 <li className='list-icon'> 
-                  <i className='fa fa-shopping-cart'/> 
-                  {
-                    cartItemCount!==0 ? 
-                      <div id='cart-item-count'>
-                        <p> {cartItemCount} </p>
-                      </div>
-                    : <></>
-                    }
+                <div className='cart-icon-container'>
+
+                    <i className='fa fa-shopping-cart'/> 
+                    {
+                      cartItemCount!==0 ? 
+                        <div id='cart-item-count'>
+                          <p> {cartItemCount} </p>
+                        </div>
+                      : <></>
+                      }
+                </div>
                 </li>
               </Link>
             </ul>
